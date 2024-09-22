@@ -1,22 +1,13 @@
-// 1-stdin.js
+/* eslint-disable */
+const std = require('process');
 
-const readline = require('readline');
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+std.stdout.write('Welcome to Holberton School, what is your name?\n');
+std.stdin.on('readable', () => {
+  const name = std.stdin.read();
+  if (name) {
+    std.stdout.write(`Your name is: ${name}`);
+  }
 });
-
-// Display welcome message
-console.log("Welcome to Holberton School, what is your name?");
-
-// Listen for user input
-rl.on('line', (input) => {
-    console.log(`Your name is: ${input}`);
-    rl.close(); // Close the interface after input is received
-});
-
-// Handle the close event to display the closing message
-rl.on('close', () => {
-    console.log("This important software is now closing");
+std.stdin.on('end', () => {
+  console.log('This important software is now closing');
 });
